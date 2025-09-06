@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Krutika</title>
+  <style>
+    :root{
+      --bg:#0f172a;           /* slate-900 */
+      --panel:#111827;        /* gray-900 */
+      --muted:#94a3b8;        /* slate-400 */
+      --text:#e5e7eb;         /* gray-200 */
+      --accent:#22d3ee;       /* cyan-400 */
+      --accent-2:#a78bfa;     /* violet-400 */
+      --ok:#34d399;           /* green-400 */
+      --warn:#fbbf24;         /* amber-400 */
+      --danger:#f87171;       /* red-400 */
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    /* Reset */
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1227 0%,#0f172a 30%,#0b1227 100%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;scroll-behavior:smooth}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+
+    /* Header / Nav */
+    header{
+      position:sticky;top:0;z-index:50;background:rgba(17,24,39,.85);
+      backdrop-filter:saturate(1.1) blur(10px);border-bottom:1px solid rgba(255,255,255,.08)
+    }
+    .nav-wrap{max-width:1100px;margin:auto;display:flex;align-items:center;gap:16px;padding:12px 20px}
+    .brand{
+      font-weight:800;letter-spacing:.5px;font-size:20px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));
+      -webkit-background-clip:text;background-clip:text;color:transparent
+    }
+    .nav{margin-left:auto;display:flex;gap:20px}
+    .nav a{opacity:.9;padding:8px 10px;border-radius:10px;transition:all .2s ease}
+    .nav a:hover{font-weight:700;text-decoration:underline;text-underline-offset:6px;opacity:1}
+    .home-icon{margin-left:8px;display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.15)}
+    .home-icon svg{width:20px;height:20px}
+
+    /* Sections */
+    section{max-width:1100px;margin:40px auto;padding:0 20px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.07);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card.pad{padding:24px}
+    h2{font-size:28px;margin:0 0 14px}
+    p{color:var(--muted);line-height:1.6}
+
+    /* About */
+    .about{display:grid;grid-template-columns:140px 1fr;gap:20px;align-items:center}
+    .avatar{
+      width:140px;height:140px;border-radius:50%;position:relative;overflow:hidden;
+      background:conic-gradient(from 220deg,var(--accent),var(--accent-2),var(--accent))
+    }
+    .avatar::after{content:"";position:absolute;inset:6px;border-radius:50%;background:linear-gradient(180deg,#0f172a,#0b1227)}
+    .avatar span{position:absolute;inset:0;display:grid;place-items:center;font-size:46px;font-weight:800;color:var(--text)}
+
+    /* Skills */
+    .skills-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+    .skill{display:flex;align-items:center;gap:10px;padding:12px;border-radius:14px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.03)}
+    .badge{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-weight:800}
+    .b-html{background:#ffe8e6;color:#d94646}
+    .b-css{background:#e6efff;color:#2563eb}
+    .b-js{background:#fff8e1;color:#b45309}
+    .b-react{background:#e6fffb;color:#0ea5a5}
+    .b-python{background:#eef7ff;color:#0b67b1}
+
+    /* Projects */
+    .projects{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .project{padding:18px;position:relative}
+    .project h3{margin:6px 0 8px}
+    .tag{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.15);margin-right:8px}
+
+    /* Recommendations */
+    .recs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .rec{padding:16px;position:relative}
+    .rec::before{content:"\201C";position:absolute;left:12px;top:6px;font-size:40px;opacity:.15}
+    .rec small{display:block;margin-top:10px;color:var(--muted)}
+
+    /* Rec form */
+    form.rec-form{margin-top:18px;display:grid;gap:10px}
+    input,textarea,button{font:inherit}
+    input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:var(--text)}
+    textarea{min-height:100px;resize:vertical}
+    .btn{
+      cursor:pointer;padding:12px 16px;border:none;border-radius:12px;
+      background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#0b1227;font-weight:800
+    }
+
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:center;justify-content:center;z-index:100}
+    .modal{width:min(520px,92vw);background:var(--panel);border:1px solid rgba(255,255,255,.1);border-radius:18px;box-shadow:var(--shadow);padding:22px}
+    .modal h3{margin:0 0 6px}
+    .modal .ok{margin-top:14px}
+
+    /* Footer */
+    footer{max-width:1100px;margin:30px auto 60px;padding:0 20px;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media (max-width: 900px){
+      .skills-grid{grid-template-columns:repeat(2,1fr)}
+      .projects{grid-template-columns:1fr}
+      .recs{grid-template-columns:1fr}
+      .about{grid-template-columns:1fr;justify-items:center;text-align:center}
+    }
+  </style>
+</head>
+<body id="top">
+  <!-- ===== Header / Nav (Tasks 1, 2, 8) ===== -->
+  <header>
+    <div class="nav-wrap">
+      <!-- Task 1: NAME top-left and styled -->
+      <div class="brand" id="brandName">YOUR NAME</div>
+      <!-- Task 2: Nav with 4 options + hover bold & underline -->
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+		<a href="#skills">Skills</a>
+        <a href="#projects">Project details</a>
+        <a href="#recommendations">Recommendations</a>
+        <!-- Task 8: Home icon appears -->
+        <a class="home-icon" href="#top" title="Home / Top" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 11l9-8 9 8"/>
+            <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== About Me (Task 3) ===== -->
+  <section id="about">
+    <div class="card pad about">
+      <div class="avatar" aria-hidden="true"><span>YN</span></div>
+      <div>
+        <h2>About Me</h2>
+        <p><strong id="aboutName">Your Name</strong> is a passionate learner and aspiring developer who enjoys building clean, accessible interfaces and playful user experiences. With a growing foundation in web technologies and a taste for problem‑solving, they love transforming ideas into polished, real‑world projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills (Task 4: total 5, with 3 newly added) ===== -->
+  <section id="skills">
+    <div class="card pad">
+      <h2>Skills</h2>
+      <p>The following skills include HTML, CSS, JavaScript, React, Python.</p>
+      <div class="skills-grid" role="list">
+        <div class="skill" role="listitem"><div class="badge b-html">H</div><div><strong>HTML5</strong><br><small class="muted">Semantic, accessible markup</small></div></div>
+        <div class="skill" role="listitem"><div class="badge b-css">C</div><div><strong>CSS3</strong><br><small class="muted">Flexbox, Grid, responsive UI</small></div></div>
+        <div class="skill" role="listitem"><div class="badge b-js">JS</div><div><strong>JavaScript</strong><br><small class="muted">ES6+, DOM, fetch, modules</small></div></div>
+        <div class="skill" role="listitem"><div class="badge b-react">R</div><div><strong>React</strong><br><small class="muted">Components, hooks, SPA patterns</small></div></div>
+        <div class="skill" role="listitem"><div class="badge b-python">Py</div><div><strong>Python</strong><br><small class="muted">Scripting & automation</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects (Task 5: 3 project details styled & custom) ===== -->
+  <section id="projects">
+    <div class="card pad">
+      <h2>Project Details</h2>
+      <div class="projects">
+        <article class="card project">
+          <span class="tag">UI</span><span class="tag">Accessibility</span>
+          <h3>Accessibility Starter Kit</h3>
+          <p>A lightweight template with color‑contrast helpers, focus rings, and keyboard‑nav patterns baked in. Improved Lighthouse Accessibility score from 76 → 100.</p>
+        </article>
+        <article class="card project">
+          <span class="tag">JS</span><span class="tag">API</span>
+          <h3>Weather Anywhere</h3>
+          <p>A vanilla JS app that caches geocoded locations and renders 7‑day forecasts. Implements graceful error states and offline fallback using Service Worker.</p>
+        </article>
+        <article class="card project">
+          <span class="tag">React</span><span class="tag">Charts</span>
+          <h3>Study Tracker</h3>
+          <p>A React dashboard to log sessions, visualize progress trends, and set streak goals. Ships with data export and local persistence.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Recommendations (Tasks 6, 7, 9) ===== -->
+  <section id="recommendations">
+    <div class="card pad">
+      <h2>Recommendations</h2>
+      <div id="recList" class="recs" aria-live="polite">
+        <!-- Task 6: Pre‑filled 3 recommendations (custom & styled) -->
+        <blockquote class="card rec"><p>“A thoughtful developer with a sharp eye for detail. Turns abstract specs into delightful interfaces.”</p><small>— Priya S., Frontend Engineer</small></blockquote>
+        <blockquote class="card rec"><p>“Consistently brings curiosity and follow‑through. Communicates trade‑offs clearly and ships on time.”</p><small>— Arjun M., Team Lead</small></blockquote>
+        <blockquote class="card rec"><p>“Level‑headed under pressure. Great collaborator who uplifts the team’s quality bar.”</p><small>— Kavya R., Product Manager</small></blockquote>
+      </div>
+
+      <!-- Task 7 & 9: New recommendation form that appends + shows confirmation pop‑up -->
+      <form class="rec-form" id="recForm">
+        <label>
+          <span>Name (optional)</span>
+          <input type="text" id="recName" placeholder="Your name" />
+        </label>
+        <label>
+          <span>Recommendation</span>
+          <textarea id="recText" placeholder="Write your recommendation..." required></textarea>
+        </label>
+        <button type="submit" class="btn">Submit Recommendation</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> <span id="footerName">Your Name</span>. All rights reserved.
+  </footer>
+
+  <!-- Modal (Task 9) -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Thank you for leaving a recommendation!</h3>
+      <p>Your feedback has been added to the list below.</p>
+      <button class="btn ok" id="closeModal" type="button">Okay</button>
+    </div>
+  </div>
+
+  <script>
+    // Small helpers to personalize quickly
+    const YOUR_NAME = "Krutika Chincholkar"; // ← change once & it updates everywhere
+    const YOUR_NAMEF = "Your Name"; // ← change once & it updates everywhere
+    document.getElementById('brandName').textContent = YOUR_NAME.toUpperCase();
+    document.getElementById('aboutName').textContent = YOUR_NAME;
+    document.getElementById('footerName').textContent = YOUR_NAMEF;
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Task 7 & 9: Append new recommendation + show confirmation modal
+    const form = document.getElementById('recForm');
+    const recList = document.getElementById('recList');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('recName').value.trim();
+      const text = document.getElementById('recText').value.trim();
+      if(!text) return;
+
+      const block = document.createElement('blockquote');
+      block.className = 'card rec';
+      const p = document.createElement('p');
+      p.textContent = `“${text}”`;
+      const small = document.createElement('small');
+      small.textContent = name ? `— ${name}` : '— Anonymous';
+      block.appendChild(p); block.appendChild(small);
+      recList.prepend(block); // adds to existing list (Task 7)
+
+      // Clear form
+      form.reset();
+
+      // Show confirmation pop‑up (Task 9)
+      modal.style.display = 'flex';
+      closeModal.focus();
+    });
+
+    closeModal.addEventListener('click', ()=> modal.style.display = 'none');
+    modal.addEventListener('click', (e)=>{ if(e.target === modal) modal.style.display = 'none'; });
+
+    // Accessibility: ESC closes modal
+    window.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && modal.style.display === 'flex') modal.style.display = 'none'; });
+  </script>
+</body>
+</html>
