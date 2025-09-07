@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio – Krutika Chincholkar</title>
+  <link rel="stylesheet" href="C:\Users\kruti\OneDrive\Desktop\web developing\MYPortfolio1.css">
+</head>
+<body id="top">
+  <!-- ===== Header / Nav (Tasks 1, 2, 8) ===== -->
+  <header>
+    <div class="nav-wrap">
+      <!-- Task 1: NAME top-left and styled -->
+      <div class="brand" id="brandName">Krutika Chincholkar</div>
+      <!-- Task 2: Nav with 4 options + hover bold & underline -->
+      <nav class="nav" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#projects">Project details</a>
+        <a href="#skills">Skills</a>
+        <a href="#recommendations">Recommendations</a>
+        <!-- Task 8: Home icon appears -->
+        <a class="home-icon" href="#top" title="Home / Top" aria-label="Home">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 11l9-8 9 8"/>
+            <path d="M5 10v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V10"/>
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== About Me (Task 3) ===== -->
+  <section id="about">
+    <div class="card pad about">
+      <div class="avatar" aria-hidden="true"><span>KC</span></div>
+      <div>
+        <h2>About Me</h2>
+        <p><strong id="aboutName">Krutika Chincholkar</strong> is a passionate learner and aspiring developer who enjoys building clean, accessible interfaces and playful user experiences. With a growing foundation in web technologies and a taste for problem-solving, she loves transforming ideas into polished, real-world projects.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills (Task 4) ===== -->
+  <section id="skills">
+    <div class="card pad">
+      <h2>Skills</h2>
+      <p>The following skills include two prior skills (HTML, CSS) plus three newly added ones (JavaScript, React, Python).</p>
+      <div class="skills-grid" role="list">
+        <div class="skill"><div class="badge b-html">H</div><div><strong>HTML5</strong><br><small>Semantic, accessible markup</small></div></div>
+        <div class="skill"><div class="badge b-css">C</div><div><strong>CSS3</strong><br><small>Flexbox, Grid, responsive UI</small></div></div>
+        <div class="skill"><div class="badge b-js">JS</div><div><strong>JavaScript</strong><br><small>ES6+, DOM, fetch, modules</small></div></div>
+        <div class="skill"><div class="badge b-react">R</div><div><strong>React</strong><br><small>Components, hooks, SPA patterns</small></div></div>
+        <div class="skill"><div class="badge b-python">Py</div><div><strong>Python</strong><br><small>Scripting & automation</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Projects (Task 5) ===== -->
+  <section id="projects">
+    <div class="card pad">
+      <h2>Project Details</h2>
+      <div class="projects">
+        <article class="card project">
+          <span class="tag">UI</span><span class="tag">Accessibility</span>
+          <h3>Accessibility Starter Kit</h3>
+          <p>A lightweight template with color-contrast helpers, focus rings, and keyboard-nav patterns baked in.</p>
+        </article>
+        <article class="card project">
+          <span class="tag">JS</span><span class="tag">API</span>
+          <h3>Weather Anywhere</h3>
+          <p>A vanilla JS app that caches geocoded locations and renders 7-day forecasts. Includes offline fallback.</p>
+        </article>
+        <article class="card project">
+          <span class="tag">React</span><span class="tag">Charts</span>
+          <h3>Study Tracker</h3>
+          <p>A React dashboard to log sessions, visualize progress trends, and set streak goals. Supports data export.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Recommendations (Tasks 6, 7, 9) ===== -->
+  <section id="recommendations">
+    <div class="card pad">
+      <h2>Recommendations</h2>
+      <div id="recList" class="recs">
+        <blockquote class="card rec"><p>“A thoughtful developer with a sharp eye for detail.”</p><small>— Priya S., Frontend Engineer</small></blockquote>
+        <blockquote class="card rec"><p>“Consistently brings curiosity and follow-through.”</p><small>— Arjun M., Team Lead</small></blockquote>
+        <blockquote class="card rec"><p>“Level-headed under pressure. Great collaborator.”</p><small>— Kavya R., Product Manager</small></blockquote>
+      </div>
+
+      <form class="rec-form" id="recForm">
+        <label>Name (optional)<input type="text" id="recName" placeholder="Your name"></label>
+        <label>Recommendation<textarea id="recText" placeholder="Write your recommendation..." required></textarea></label>
+        <button type="submit" class="btn">Submit Recommendation</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    © <span id="year"></span> <span id="footerName">Krutika Chincholkar</span>. All rights reserved.
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal" role="dialog">
+      <h3>Thank you for leaving a recommendation!</h3>
+      <p>Your feedback has been added to the list below.</p>
+      <button class="btn ok" id="closeModal" type="button">Okay</button>
+    </div>
+  </div>
+
+  <script src="C:\Users\kruti\OneDrive\Desktop\web developing\MYPortfolio1.js"></script>
+</body>
+</html>
